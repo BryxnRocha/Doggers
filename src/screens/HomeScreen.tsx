@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
 import {
   StyleSheet,
   View,
@@ -9,6 +10,7 @@ import {
 import MapView from 'react-native-maps';
 
 function HomeScreen(): React.JSX.Element {
+  const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <MapView
@@ -21,23 +23,24 @@ function HomeScreen(): React.JSX.Element {
         }}
       />
 
-      <View style={styles.navbar}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Cuenta</Text>
-        </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.accountButton}
+        onPress={() => navigation.navigate('Account' as never)}
+      >
+        <Text style={styles.buttonText}>Cuenta</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Botón 1</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.relocationButton}
+        onPress={() => navigation.navigate('Relocation' as never)}
+      >
+        <Text style={styles.buttonText}>Reubicación</Text>
+      </TouchableOpacity>
 
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Botón 2</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Botón 3</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.reportsButton}
+        onPress={() => navigation.navigate('Reports' as never)}
+      >
+        <Text style={styles.buttonText}>Reports</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -51,26 +54,37 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  navbar: {
+  accountButton: {
     position: 'absolute',
-    bottom: 20,
+    top: 60,
     left: 20,
-    right: 20,
-
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
 
     backgroundColor: '#1E1E1E',
-
-    paddingVertical: 15,
+    paddingVertical: 12,
     paddingHorizontal: 20,
-
-    borderRadius: 20,
+    borderRadius: 15,
   },
 
-  button: {
-    alignItems: 'center',
+  relocationButton: {
+    position: 'absolute',
+    bottom: 40,
+    left: 20,
+
+    backgroundColor: '#1E1E1E',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 15,
+  },
+
+  reportsButton: {
+    position: 'absolute',
+    bottom: 40,
+    right: 20,
+
+    backgroundColor: '#1E1E1E',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 15,
   },
 
   buttonText: {
